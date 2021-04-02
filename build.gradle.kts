@@ -13,6 +13,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test-junit"))
+
+    implementation("org.telegram:telegrambots:5.1.1")
 }
 
 tasks.test {
