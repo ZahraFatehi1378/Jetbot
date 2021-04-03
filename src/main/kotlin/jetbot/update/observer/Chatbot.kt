@@ -4,7 +4,7 @@ import jetbot.replyMessage
 import jetbot.update.UpdateHandler
 import org.telegram.telegrambots.meta.api.objects.Message
 
-val chatMap: HashMap<String, String> = hashMapOf(
+val chatMap: MutableMap<String, String> = mutableMapOf(
     "hi" to "hello",
     "fuck" to "ok I'm gonna fuck @Moeinwt"
 )
