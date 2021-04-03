@@ -1,22 +1,26 @@
-import jetbot.MessageHandler
-import org.telegram.telegrambots.meta.TelegramBotsApi
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException
-import org.telegram.telegrambots.updatesreceivers.DefaultBotSession
+import jetbot.telegramBot
+import jetbot.update.message.groupMessages
+import jetbot.update.message.messageHandler
+import jetbot.update.message.userMessages
+import jetbot.update.observer.answer
+import jetbot.update.observer.checkForForbiddenWords
+import jetbot.update.updateHandler
 
 fun main() {
 
-    try {
+    telegramBot {
 
-        val messageHandler = MessageHandler(
-            onMessageReceived = {
-                println("message from ${it.chat.firstName} => ${it.text}")
+        +updateHandler {
+
+            messageHandler.handle {
+                answer(it)
             }
-        )
 
-        TelegramBotsApi(DefaultBotSession::class.java).apply {
-            registerBot(messageHandler)
+            userMessages.handle { println("user message: ${it.text}") }
+
+            groupMessages.handle {
+                checkForForbiddenWords(it)
+            }
         }
-    } catch (e: TelegramApiException) {
-        e.printStackTrace()
     }
 }
