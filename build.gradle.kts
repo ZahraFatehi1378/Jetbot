@@ -13,7 +13,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test-junit"))
-
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+    implementation("org.slf4j:slf4j-simple:1.6.1")
     implementation("org.telegram:telegrambots:5.1.1")
 }
 
